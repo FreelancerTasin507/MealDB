@@ -8,7 +8,7 @@ const HeaderImg = () => {
           src="Header-img.png"
           alt=""
         />
-        <div className="absolute md:top-56 top-40 left-0 right-0 font-bold">
+        <div className="absolute md:top-56 top-40 left-0 right-0 font-bold text-center">
           <h1 className="font-bold md:text-6xl text-xl text-white">
             Taste Our Delicious <br /> Best Foods
           </h1>

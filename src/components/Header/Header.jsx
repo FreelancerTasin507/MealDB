@@ -1,12 +1,13 @@
 import React from "react";
 import HeaderImg from "../HeaderImg/HeaderImg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <> 
       <div className="navbar sticky top-0 z-10 bg-neutral-900 rounded-2xl" >
   <div className="flex-1">
-    <a className="btn btn-ghost normal-case text-xl">Meal DB</a>
+    <Link className="font-bold text-3xl ml-3" to='/'>MealDB</Link>
   </div>
   <div className="flex-none">
     <div className="dropdown dropdown-end">
@@ -21,7 +22,7 @@ const Header = () => {
           <span className="font-bold text-lg">0 Items</span>
           <span className="text-info">Subtotal: 0</span>
           <div className="card-actions">
-            <button className="btn btn-primary btn-block">View cart</button>
+            <button className="btn btn-primary btn-block"><Link to='/viewcart'>View cart</Link></button>
           </div>
         </div>
       </div>
@@ -34,18 +35,18 @@ const Header = () => {
       </label>
       <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
         <li>
-          <a className="justify-between">
+          <Link to='/profile' className="justify-between">
             Profile
             <span className="badge">New</span>
-          </a>
+          </Link>
         </li>
-        <li><a>Settings</a></li>
         <li><a>Logout</a></li>
       </ul>
     </div>
   </div>
 </div>
-      <HeaderImg></HeaderImg>
+      
+      
     </>
   );
 };
