@@ -3,6 +3,9 @@ import HeaderImg from "../HeaderImg/HeaderImg";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+
+  
+
   return (
     <> 
       <div className="navbar sticky top-0 z-10 bg-neutral-900 rounded-2xl" >
