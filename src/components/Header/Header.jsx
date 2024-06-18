@@ -86,7 +86,6 @@ const Header = () => {
               <img
                 src="images.jpg"
                 alt="User Avatar"
-                onError={(e) => (e.target.src = "default-avatar.png")}
               />
             </div>
           </label>

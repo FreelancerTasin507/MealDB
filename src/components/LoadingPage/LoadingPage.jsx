@@ -4,7 +4,7 @@ import { BallTriangle } from "react-loader-spinner";
 const LoadingPage = () => {
   return (
     <div>
-      <div className="ml-[45%] mt-[20%]">
+      <div className="ml-[30%] mt-[40%] md:ml-[45%] md:mt-[20%]">
         <BallTriangle
           height={100}
           width={100}
