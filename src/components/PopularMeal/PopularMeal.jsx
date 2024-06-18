@@ -22,6 +22,10 @@ const PopularMeal = () => {
     console.log("clicked");
   };
 
+
+
+  
+
   return (
     <div>
       <h1 className="text-4xl font-semibold text-center  mt-16">
@@ -52,7 +56,7 @@ const PopularMeal = () => {
               <div className="card-body">
                 <h2 className="card-title">{meal.strMeal}</h2>
                 <p className="hidden md:block">{meal.strInstructions.slice(0, 100)}...</p>
-                <div className="md:flex gap-3">
+                <div className="md:flex gap-3 items-center">
                   <Link
                     to={`/modal/${meal.idMeal}`}
                     className="btn btn-button rounded-3xl"
