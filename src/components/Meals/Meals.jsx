@@ -64,11 +64,7 @@ const Meals = () => {
     addToDb(product.idMeal);
   };
 
-  const handleClearCart = () => {
-    setCart([]);
-    deleteShoppingCart();
-  };
-
+ 
   const handleSeeMore = () => {
     setNumToShow(numToShow + itemsPerLoad);
   };
@@ -114,6 +110,7 @@ const Meals = () => {
                 </button>
               </div>
             )}
+            
           </div>
           <AboutUs></AboutUs>
           <Footer></Footer>

@@ -6,7 +6,7 @@ import Footer from "../Footer/Footer";
 
 const Modal = () => {
   const { id } = useParams();
-  // console.log(singleMeal);
+  // console.log(id);
 
   const [filtereddata, setFilteredData] = useState([]);
 
