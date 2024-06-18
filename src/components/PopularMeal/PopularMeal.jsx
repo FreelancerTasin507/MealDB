@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper/modules";
 import "./PopularMeal.css";
 import { Link } from "react-router-dom";
+import { addToDb, getShoppingCart } from "../../Utilities/Utilitis";
 
 const PopularMeal = () => {
   const [popularMeals, setPopularMeals] = useState([]);
@@ -17,18 +18,43 @@ const PopularMeal = () => {
       .then((data) => setPopularMeals(data.meals));
   }, []);
 
+  // localStorage
+  const [cart, setCart] = useState([]);
 
-  const handleAddToCart = () => {
-    console.log("clicked");
+  useEffect(() => {
+    const storedCart = getShoppingCart();
+    const savedCart = [];
+    for (const id in storedCart) {
+      const addedProduct = popularMeals.find(
+        (product) => product.idMeal === id
+      );
+      if (addedProduct) {
+        const quantity = storedCart[id];
+        addedProduct.quantity = quantity;
+        savedCart.push(addedProduct);
+      }
+    }
+    setCart(savedCart);
+  }, [popularMeals]);
+
+  const handleAddToCart = (product) => {
+    let newCart = [];
+    const exists = cart.find((pd) => pd.idMeal === product.idMeal);
+    if (!exists) {
+      product.quantity = 1;
+      newCart = [...cart, product];
+    } else {
+      exists.quantity = exists.quantity + 1;
+      const remaining = cart.filter((pd) => pd.idMeal !== product.idMeal);
+      newCart = [...remaining, exists];
+    }
+    setCart(newCart);
+    addToDb(product.idMeal);
   };
-
-
-
-  
 
   return (
     <div>
-      <h1 className="text-4xl font-semibold text-center  mt-16">
+      <h1 className="text-4xl font-semibold text-center mt-16">
         Popular Foods
       </h1>
       <Swiper
@@ -55,7 +81,9 @@ const PopularMeal = () => {
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{meal.strMeal}</h2>
-                <p className="hidden md:block">{meal.strInstructions.slice(0, 100)}...</p>
+                <p className="hidden md:block">
+                  {meal.strInstructions.slice(0, 100)}...
+                </p>
                 <div className="md:flex gap-3 items-center">
                   <Link
                     to={`/modal/${meal.idMeal}`}
@@ -64,7 +92,7 @@ const PopularMeal = () => {
                     Show More
                   </Link>
                   <button
-                    onClick={handleAddToCart}
+                    onClick={() => handleAddToCart(meal)}
                     className="btn btn-warning rounded-3xl font-bold mt-4"
                   >
                     Add to Cart
