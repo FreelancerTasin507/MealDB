@@ -18,8 +18,6 @@ const PopularMeal = () => {
   }, []);
 
 
-  const {strMeal} = popularMeals;
-
 
   const handleAddToCart = () => {
     console.log("clicked");
