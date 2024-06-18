@@ -11,10 +11,10 @@ const Meal = (props) => {
   }
 
   return (
-      <div className="card md:card-side shadow-2xl bg-neutral-900 rounded-2xl">
+      <div className="card lg:card-side shadow-2xl bg-neutral-900 rounded-2xl">
         <figure>
           <img
-          className="md:w-3/4"
+          className="lg:w-3/4"
             src={strMealThumb}
             alt="Movie"
           />

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Footer from "../Footer/Footer";
 import HeaderImg from "../HeaderImg/HeaderImg";
 import Meal from "../Meal/Meal";
+import PopularMeal from "../PopularMeal/PopularMeal";
 
 const Meals = () => {
   const [meals, setMeals] = useState([]);
@@ -22,26 +23,33 @@ const Meals = () => {
 
   return (
     <>
-    <HeaderImg></HeaderImg>
-    <div className="mt-28">
-      <h1 className="text-4xl font-semibold text-center">Your Favourite Food</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
-        {meals.slice(0, numToShow).map((meal) => (
-          <Meal
-            key={meal.idMeal}
-            handleSeeMore={handleSeeMore}
-            meals={meal}
-          ></Meal>
-        ))}
-      </div>
+      <HeaderImg></HeaderImg>
+      <PopularMeal>z</PopularMeal>
+      <div className="mt-28">
+        <h1 className="text-4xl font-semibold text-center">
+          Your Favourite Food
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
+          {meals.slice(0, numToShow).map((meal) => (
+            <Meal
+              key={meal.idMeal}
+              handleSeeMore={handleSeeMore}
+              meals={meal}
+            ></Meal>
+          ))}
+        </div>
         {meals.length > numToShow && (
-            <div className="mt-10 mb-10 text-center">
-            <button onClick={handleSeeMore} className="btn btn-warning rounded-2xl w-28  text-black font-bold">See More</button>
-            </div>
-          )}
-        
+          <div className="mt-10 mb-10 text-center">
+            <button
+              onClick={handleSeeMore}
+              className="btn btn-warning rounded-2xl w-28  text-black font-bold"
+            >
+              See More
+            </button>
+          </div>
+        )}
         <Footer></Footer>
-    </div>
+      </div>
     </>
   );
 };
