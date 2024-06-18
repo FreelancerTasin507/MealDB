@@ -17,8 +17,6 @@ const PopularMeal = () => {
       .then((data) => setPopularMeals(data.meals));
   }, []);
 
-//   ....
-
 
   const handleAddToCart = () => {
     console.log("clicked");
