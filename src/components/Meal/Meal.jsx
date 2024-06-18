@@ -25,7 +25,7 @@ const Meal = (props) => {
           <p className="text-left">
           {strInstructions.length <= 70 ? strInstructions : `${strInstructions.slice(0, 70)} .... `}
         </p>
-          <div className="flex gap-3">
+          <div className="flex md:gap-3">
           <Link to={`/modal/${props.meals.idMeal}`} className="btn btn-button rounded-3xl">Show More</Link >
             <button onClick={handleAddToCart} className="btn btn-warning rounded-3xl font-bold">Add to Cart</button>
           </div>
