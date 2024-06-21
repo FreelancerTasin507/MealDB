@@ -7,17 +7,19 @@ const Header = () => {
   const [meals, setMeals] = useState([]);
   const [cart, setCart] = useState([]);
 
+  // console.log(meals);
+
   useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=a`)
+    fetch(`https://mealdb-server.onrender.com/allMeals`)
       .then((res) => res.json())
-      .then((data) => setMeals(data.meals));
+      .then((data) => setMeals(data));
   }, []);
 
   useEffect(() => {
     const storedCart = getShoppingCart();
     const savedCart = [];
     for (const id in storedCart) {
-      const addedProduct = meals.find((product) => product.idMeal === id);
+      const addedProduct = meals.find((product) => product._id === id);
       if (addedProduct) {
         const quantity = storedCart[id];
         addedProduct.quantity = quantity;
@@ -68,7 +70,7 @@ const Header = () => {
               <span className="text-info">
                 Subtotal:{" "}
                 {cart.reduce(
-                  (total, item) => total + item.quantity * item.price,
+                  (total, item) => total + item.quantity * item.strPrice,
                   0
                 )}
               </span>

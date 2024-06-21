@@ -15,9 +15,9 @@ const Meals = () => {
   const itemsPerLoad = 6;
   // console.log(meals);
   useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=a`)
+    fetch(`https://mealdb-server.onrender.com/allMeals`)
       .then((res) => res.json())
-      .then((data) => setMeals(data.meals));
+      .then((data) => setMeals(data));
   }, []);
 
   // localStorage
@@ -51,17 +51,17 @@ const Meals = () => {
     // const newCart = [...cart, product];
     // if product doesn't exist in the cart, then set quantity = 1
     // if exist update quantity by 1
-    const exists = cart.find((pd) => pd.id === product.idMeal);
+    const exists = cart.find((pd) => pd.id === product._id);
     if (!exists) {
       product.quantity = 1;
       newCart = [...cart, product];
     } else {
       exists.quantity = exists.quantity + 1;
-      const remaining = cart.filter((pd) => pd.id !== product.idMeal);
+      const remaining = cart.filter((pd) => pd.id !== product._id);
       newCart = [...remaining, exists];
     }
     setCart(newCart);
-    addToDb(product.idMeal);
+    addToDb(product._id);
   };
 
  
@@ -93,7 +93,7 @@ const Meals = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
               {meals.slice(0, numToShow).map((meal) => (
                 <Meal
-                  key={meal.idMeal}
+                  key={meal._id}
                   handleSeeMore={handleSeeMore}
                   handleAddToCart={handleAddToCart}
                   meals={meal}

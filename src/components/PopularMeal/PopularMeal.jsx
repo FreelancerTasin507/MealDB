@@ -13,9 +13,9 @@ const PopularMeal = () => {
   const [numToShow, setNumToShow] = useState(6);
 
   useEffect(() => {
-    fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=a`)
+    fetch(`https://mealdb-server.onrender.com/allMeals`)
       .then((res) => res.json())
-      .then((data) => setPopularMeals(data.meals));
+      .then((data) => setPopularMeals(data));
   }, []);
 
   // localStorage
@@ -26,7 +26,7 @@ const PopularMeal = () => {
     const savedCart = [];
     for (const id in storedCart) {
       const addedProduct = popularMeals.find(
-        (product) => product.idMeal === id
+        (product) => product._id === id
       );
       if (addedProduct) {
         const quantity = storedCart[id];
@@ -39,17 +39,17 @@ const PopularMeal = () => {
 
   const handleAddToCart = (product) => {
     let newCart = [];
-    const exists = cart.find((pd) => pd.idMeal === product.idMeal);
+    const exists = cart.find((pd) => pd._id === product._id);
     if (!exists) {
       product.quantity = 1;
       newCart = [...cart, product];
     } else {
       exists.quantity = exists.quantity + 1;
-      const remaining = cart.filter((pd) => pd.idMeal !== product.idMeal);
+      const remaining = cart.filter((pd) => pd._id !== product._id);
       newCart = [...remaining, exists];
     }
     setCart(newCart);
-    addToDb(product.idMeal);
+    addToDb(product._id);
   };
 
   return (
@@ -74,19 +74,20 @@ const PopularMeal = () => {
         className="mySwiper"
       >
         {popularMeals.slice(0, numToShow).map((meal) => (
-          <SwiperSlide key={meal.idMeal}>
+          <SwiperSlide key={meal._id}>
             <div className="card glass">
               <figure>
                 <img src={meal.strMealThumb} alt={meal.strMeal} />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{meal.strMeal}</h2>
+                <h2 className="card-title">Price: ${meal.strPrice}</h2>
                 <p className="hidden md:block">
-                  {meal.strInstructions.slice(0, 100)}...
+                  {meal.strInstructions.slice(0, 50)}...
                 </p>
                 <div className="md:flex gap-3 items-center">
                   <Link
-                    to={`/modal/${meal.idMeal}`}
+                    to={`/modal/${meal._id}`}
                     className="btn btn-button rounded-3xl"
                   >
                     Show More

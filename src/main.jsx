@@ -36,9 +36,7 @@ const router = createBrowserRouter([
         path: "modal/:id",
         element: <Modal></Modal>,
         loader: ({ params }) =>
-          fetch(
-            `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${params.id}`
-          ),
+          fetch(`https://mealdb-server.onrender.com/singleMeal/${params.id}`),
       },
     ],
   },

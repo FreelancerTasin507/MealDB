@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 import Modal from "../Modal/Modal";
 
 const Meal = (props) => {
-  const { strMealThumb, strMeal, strInstructions} = props.meals;
+  const { strMealThumb, strMeal, strInstructions, strPrice} = props.meals;
   const { handleAddToCart } = props;
 
-  // console.log(idMeal);
+  // console.log(_id);
 
   return (
     <div className="card lg:card-side shadow-2xl bg-neutral-900 rounded-2xl">
@@ -17,6 +17,9 @@ const Meal = (props) => {
         <h2 className="card-title font-bold md:text-2xl md:text-center">
           {strMeal}
         </h2>
+        <h2 className="card-title font-bold md:text-2xl md:text-center">
+         Price: ${strPrice}
+        </h2>
         <p className="text-left font-bold">Recipee : </p>
         <p className="text-left">
           {strInstructions.length <= 70
@@ -25,7 +28,7 @@ const Meal = (props) => {
         </p>
         <div className="flex md:gap-3">
           <Link
-            to={`/modal/${props.meals.idMeal}`}
+            to={`/modal/${props.meals._id}`}
             className="btn btn-button rounded-3xl"
           >
             Show More
